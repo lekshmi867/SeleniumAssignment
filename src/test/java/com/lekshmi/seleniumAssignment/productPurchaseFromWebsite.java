@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import org.testng.annotations.Test;
 
-public class productPurchaseFromWebsite {
+public class ProductPurchaseFromWebsite {
 	WebDriver wd;
 
 	@BeforeMethod
