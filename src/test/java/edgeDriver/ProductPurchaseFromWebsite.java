@@ -1,4 +1,4 @@
-package com.lekshmi.seleniumAssignment;
+package edgeDriver;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
