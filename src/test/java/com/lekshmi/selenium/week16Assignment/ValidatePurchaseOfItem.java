@@ -1,6 +1,7 @@
 package com.lekshmi.selenium.week16Assignment;
 
 import java.time.Duration;
+import java.util.function.Predicate;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -112,12 +113,12 @@ public class ValidatePurchaseOfItem {
 	}
 	
 	void verifyFinalReceipt(String textFromWebElement) {
-		boolean isAmountValid = textFromWebElement.contains("Amount: 650 USD");
-		boolean isCardNumberValid = textFromWebElement.contains("Card Number: 123456789");
-		boolean isNameValid = textFromWebElement.contains("Name: lekshmi");
-		sf.assertEquals(isAmountValid, true);
-		sf.assertEquals(isCardNumberValid, true);
-		sf.assertEquals(isNameValid, true);
+		Predicate<String> isAmountValid = (s) -> s.contains("Amount: 650 USD");
+		Predicate<String> isCardNumberValid = (s) -> s.contains("Card Number: 123456789");
+		Predicate<String> isNameValid = (s) -> s.contains("Name: lekshmi");
+		sf.assertEquals(isAmountValid.test(textFromWebElement), true);
+		sf.assertEquals(isCardNumberValid.test(textFromWebElement), true);
+		sf.assertEquals(isNameValid.test(textFromWebElement), true);
 		wd.findElement(By.cssSelector("button.confirm.btn.btn-lg.btn-primary")).click();
 		sf.assertEquals(wd.getCurrentUrl(),"https://www.demoblaze.com/index.html", "Invalid url");
 	}

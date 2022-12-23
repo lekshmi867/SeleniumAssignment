@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.openqa.selenium.By;
 import com.google.common.collect.Sets;
@@ -82,7 +83,8 @@ public class ValidateTitleOfAllTabs {
 	String windowHandle(Set<String> allWindowHandles1, Set<String> allWindowHandles2) {
 		Set<String> diff=Sets.difference(allWindowHandles2, allWindowHandles1);
 		List<String> list = new ArrayList<>(diff);
-		return list.get(0);		
+		Supplier<String> supplier=()->list.get(0);
+		return supplier.get();		
 	}
 		
 	

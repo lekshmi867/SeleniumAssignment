@@ -21,6 +21,7 @@ public class PerformMouseHover {
 	WebDriverWait wdwait;
 	SoftAssert sf = new SoftAssert();
 	Actions action;
+	String childHandle = null;
 
 	@BeforeMethod
 	public void setUp() {
@@ -75,12 +76,7 @@ public class PerformMouseHover {
 	String getWindowHandle(WebElement tab, String parentWindowHandle) {
 		tab.click();
 		Set<String> allWindowHandles = wd.getWindowHandles();
-		String childHandle = null;
-		for (String handle : allWindowHandles) {
-			if (!handle.equals(parentWindowHandle)) {
-				childHandle = handle;
-			}
-		}
+		allWindowHandles.stream().filter(p->!p.equals(parentWindowHandle)).forEach(h->childHandle=h);
 		wd.switchTo().window(parentWindowHandle);
 		return childHandle;
 	}
