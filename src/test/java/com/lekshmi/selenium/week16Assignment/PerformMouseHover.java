@@ -18,7 +18,7 @@ import org.testng.asserts.SoftAssert;
 
 public class PerformMouseHover {
 	WebDriver wd;
-	WebDriverWait wdwait;
+	WebDriverWait wait;
 	SoftAssert sf = new SoftAssert();
 	Actions action;
 	String childHandle = null;
@@ -32,7 +32,7 @@ public class PerformMouseHover {
 		// intialise webdriver instance
 		wd = new ChromeDriver();
 
-		wdwait = new WebDriverWait(wd, Duration.ofSeconds(30));
+		wait = new WebDriverWait(wd, Duration.ofSeconds(30));
 
 		action = new Actions(wd);
 		// Launch a page
@@ -46,7 +46,7 @@ public class PerformMouseHover {
 		String parentWindowHandle = wd.getWindowHandle();
 		mouseHoverClick();
 		
-		wdwait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(("div.dropdown-content a:first-of-type"))));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(("div.dropdown-content a:first-of-type"))));
 		WebElement firstTab = wd.findElement(By.cssSelector("div.dropdown-content a:first-of-type"));
 		String secondWindowHandle = getWindowHandle(firstTab, parentWindowHandle);
 		wd.switchTo().window(secondWindowHandle);
